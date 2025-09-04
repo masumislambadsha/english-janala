@@ -14,7 +14,7 @@ const displayLesson = (lessons) => {
     btnDiv.innerHTML = `
      <button id="lessonBtn-${lesson.level_no}"
      onclick ="loadLevelWord(${lesson.level_no})"  class="btn btn-outline btn-primary lesson-btn" >
-          <img src="./assets/fa-book-open.png" alt=""/>
+          <img id='bookWhite-${lesson.level_no}' src="./assets/fa-book-open.png" alt=""/>
           Lesson -${lesson.level_no}
         </button>
     `;
@@ -30,6 +30,7 @@ const loadLevelWord = (id) => {
        const clickBtn = document.getElementById(`lessonBtn-${id}`)
        document.querySelectorAll('.lesson-btn').forEach(btn=>btn.classList.remove('active'))
        clickBtn.classList.add('active')
+      document.getElementById(`bookWhite-${id}`).classList.add('invert', 'brightness-0')
        //  const btnActive = document.getElementsByClassName('lesson-btn')
        //  for(const btn of btnActive){
        //   btn.classList.remove('active')
