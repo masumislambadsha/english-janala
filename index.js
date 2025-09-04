@@ -14,7 +14,7 @@ const displayLesson = (lessons) => {
     btnDiv.innerHTML = `
      <button id="lessonBtn-${lesson.level_no}"
      onclick ="loadLevelWord(${lesson.level_no})"  class="btn btn-outline btn-primary lesson-btn" >
-          <img id='bookWhite-${lesson.level_no}' src="./assets/fa-book-open.png" alt=""/>
+          <img id='bookWhite-${lesson.level_no}' src="./assets/fa-book-open.png" alt="" class="removeWhite" />
           Lesson -${lesson.level_no}
         </button>
     `;
@@ -28,8 +28,12 @@ const loadLevelWord = (id) => {
     .then((res) => res.json())
     .then((data) =>{
        const clickBtn = document.getElementById(`lessonBtn-${id}`)
+
+
        document.querySelectorAll('.lesson-btn').forEach(btn=>btn.classList.remove('active'))
        clickBtn.classList.add('active')
+
+      document.querySelectorAll('.removeWhite').forEach(btn=>btn.classList.remove('invert', 'brightness-0'))
       document.getElementById(`bookWhite-${id}`).classList.add('invert', 'brightness-0')
        //  const btnActive = document.getElementsByClassName('lesson-btn')
        //  for(const btn of btnActive){
@@ -64,7 +68,7 @@ const displayLevelWord = (words) => {
           <div class="font-bold md:text-[20px] text-gray-700 font-banla">"${word.meaning ?word.meaning:`অর্থ পাওয়া যায়নি`}/${word.pronunciation?word.pronunciation:"উচ্চারণ পাওয়া যায়নি"}"</div>
 
           <div class="flex justify-between items-center mt-[50px] px-[55px]">
-            <button class="btn bg-[rgb(26,145,255,0.1)] hover:bg-[#1A91FF80] rounded-[8px]"><i class="fa-solid fa-circle-info"></i></button>
+            <button onclick='my_modal_5.showModal()' class="btn bg-[rgb(26,145,255,0.1)] hover:bg-[#1A91FF80] rounded-[8px]"><i class="fa-solid fa-circle-info"></i></button>
             <button class="btn bg-[rgb(26,145,255,0.1)] rounded-[8px] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
           </div>
         </div>
