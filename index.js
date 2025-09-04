@@ -59,7 +59,6 @@ const displayWordDetails = (word) =>{
    <div class="space-y-[32px] p-6 ">
         <h2 class="font-semibold text-4xl">
           ${ word.word ? word.word : "শব্দ পাওয়া যায়নি"}
-          (<i class="fa-solid fa-microphone-lines"></i>)
         </h2>
         <div class="space-y-3">
           <h3 class="text-2xl font-semibold">Meaning</h3>
@@ -98,8 +97,10 @@ const displayWordDetails = (word) =>{
   `
 }
 
-// ---------- 🔊 Speech Function ----------
+// ---------- 🔊 Speech Function (Mobile friendly) ----------
 let voices = [];
+
+// voices লোড হওয়ার পর populate করো
 speechSynthesis.onvoiceschanged = () => {
   voices = speechSynthesis.getVoices();
 };
@@ -112,11 +113,17 @@ const speakWord = (text) => {
     utterance.rate = 0.9;
     utterance.pitch = 1;
 
+    // voice assign করো
     if (voices.length > 0) {
       utterance.voice = voices.find(v => v.lang.startsWith("en")) || voices[0];
     }
 
-    speechSynthesis.speak(utterance);
+    // Safari iOS/Android fallback → কিছু delay দিলে কাজ করে
+    if (!utterance.voice) {
+      setTimeout(() => speechSynthesis.speak(utterance), 250);
+    } else {
+      speechSynthesis.speak(utterance);
+    }
   } else {
     alert("Your browser does not support speech synthesis.");
   }
