@@ -50,7 +50,8 @@ const displayLevelWord = (words) => {
             word.word ? word.word : "শব্দ পাওয়া যায়নি"
           }</h2>
           <p class="font-medium md:text-[14px]">Meaning/Pronounciation</p>
-          <div class="font-bold md:text-[20px] text-gray-700 font-banla">"${word.meaning ?word.meaning:`অর্থ পাওয়া যায়নি`}/${word.pronunciation?word.pronunciation:"উচ্চারণ পাওয়া যায়নি"}</div>
+          <div class="font-bold md:text-[20px] text-gray-700 font-banla">"${word.meaning ?word.meaning:`অর্থ পাওয়া যায়নি`}/${word.pronunciation?word.pronunciation:"উচ্চারণ পাওয়া যায়নি"}"</div>
+
           <div class="flex justify-between items-center mt-[50px] px-[55px]">
             <button class="btn bg-[rgb(26,145,255,0.1)] hover:bg-[#1A91FF80] rounded-[8px]"><i class="fa-solid fa-circle-info"></i></button>
             <button class="btn bg-[rgb(26,145,255,0.1)] rounded-[8px] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
