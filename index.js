@@ -50,12 +50,35 @@ const loadWordDetail =async (id) =>{
 
 }
 
-const displayWordDetails = (words) =>{
-  console.log(words)
+const displayWordDetails = (word) =>{
+  console.log(word)
   const detailsBox = document.getElementById('details-container')
     document.getElementById("word_modal").showModal()
 
-  // detailsBox.innerHTML = 'Hi i am from hs'
+  detailsBox.innerHTML = `
+   <div class="space-y-[32px] p-6 ">
+        <h2 class="font-semibold text-4xl">${ word.word ? word.word : "শব্দ পাওয়া যায়নি"} (<i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation?word.pronunciation:"উচ্চারণ পাওয়া যায়নি"})</h2>
+        <div class="space-y-3">
+        <h3 class="text-2xl font-semibold">Meaning</h3>
+        <p class="text-2xl font-medium font-bangla">${word.meaning ?word.meaning:`অর্থ পাওয়া যায়নি`}</p>
+      </div>
+      <div class="space-y-3">
+        <h3 class="text-2xl font-semibold">Example</h3>
+         <p class="text-2xl font-normal font-bangla text-gray-600">${word.sentence}</p>
+      </div>
+      <div class="space-y-3">
+        <h3 class="text-2xl font-semibold">সমার্থক শব্দ গুলো</h3>
+        <div class="flex gap-2">
+        <p class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px] ">${word.synonyms[0] ? word.synonyms[0]:"সমার্থক শব্দ পাওয়া যায়নি"}</p>
+        <p class="text-[20px] font-normal text-gray-600  bg-[#EDF7FF] px-[20px] py-[6px]">${word.synonyms[1] ? word.synonyms[1]:"সমার্থক শব্দ পাওয়া যায়নি"}</p>
+        <p class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px]">${word.synonyms[2] ? word.synonyms[2]:"সমার্থক শব্দ পাওয়া যায়নি"} </p>
+        </div>
+      </div>
+      <button class="btn btn-primary rounded-lg mt-[50px]">
+         Complete Learning
+        </button>
+      </div>
+  `
 }
 const displayLevelWord = (words) => {
   const wordContainer = document.getElementById("word-container");
