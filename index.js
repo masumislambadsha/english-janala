@@ -1,4 +1,9 @@
-// সব Lesson লোড
+const createElement = (arr) => {
+  const htmlElement = arr.map(el =>`<span class='btn'>${el}</span>`)
+  console.log(htmlElement.join(" "));
+
+}
+
 const loadLesson = () => {
   const url = "https://openapi.programming-hero.com/api/levels/all";
   fetch(url)
@@ -73,7 +78,7 @@ const displayWordDetails = (word) =>{
         <div class="space-y-3">
           <h3 class="text-2xl font-semibold">সমার্থক শব্দ গুলো</h3>
           <div class="flex gap-2">
-            <p class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px] ">
+           <p class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px] ">
               ${word.synonyms[0] ? word.synonyms[0]:"সমার্থক শব্দ পাওয়া যায়নি"}
             </p>
             <p class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px]">
@@ -96,6 +101,9 @@ const displayWordDetails = (word) =>{
       </div>
   `
 }
+// <div class="text-[20px] font-normal text-gray-600 bg-[#EDF7FF] px-[20px] py-[6px] space-x-5 ">
+            //  ${word.synonyms ? word.synonyms:"সমার্থক শব্দ পাওয়া যায়নি"}
+            // </div>
 
 // ---------- 🔊 Speech Function (Mobile friendly) ----------
 let voices = [];
