@@ -14,7 +14,7 @@ const manageSpinner = (status) =>{
     document.getElementById('word-container').classList.remove('hidden')
   }
 }
-
+// commw=ent
 const loadLesson = () => {
   document.querySelectorAll('.lesson-btn').forEach(btn=>btn.classList.remove('active'))
   const url = "https://openapi.programming-hero.com/api/levels/all";
