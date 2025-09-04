@@ -4,7 +4,19 @@ const createElement = (arr) => {
 
 }
 
+const manageSpinner = (status) =>{
+  if(status == true){
+    document.getElementById('spinner').classList.remove('hidden')
+    document.getElementById('word-container').classList.add('hidden')
+  }
+  else{
+     document.getElementById('spinner').classList.add('hidden')
+    document.getElementById('word-container').classList.remove('hidden')
+  }
+}
+
 const loadLesson = () => {
+  document.querySelectorAll('.lesson-btn').forEach(btn=>btn.classList.remove('active'))
   const url = "https://openapi.programming-hero.com/api/levels/all";
   fetch(url)
     .then((res) => res.json())
@@ -32,8 +44,8 @@ const displayLesson = (lessons) => {
 
 loadLesson();
 
-// লেসনের শব্দ লোড
 const loadLevelWord = (id) => {
+  manageSpinner(true)
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -47,7 +59,6 @@ const loadLevelWord = (id) => {
     });
 };
 
-// নির্দিষ্ট শব্দের ডিটেইল লোড
 const loadWordDetail = async (id) =>{
   const url=`https://openapi.programming-hero.com/api/word/${id}`
   const res = await fetch(url)
@@ -55,7 +66,7 @@ const loadWordDetail = async (id) =>{
   displayWordDetails(details.data);
 };
 
-// শব্দের বিস্তারিত দেখাও
+
 const displayWordDetails = (word) =>{
   const detailsBox = document.getElementById('details-container')
   document.getElementById("word_modal").showModal()
@@ -154,6 +165,8 @@ const displayLevelWord = (words) => {
         </h3>
       </div>
   `;
+  manageSpinner(false)
+  return
   }
 
   words.forEach((word) => {
@@ -181,4 +194,20 @@ const displayLevelWord = (words) => {
     `;
     wordContainer.append(card);
   });
+  manageSpinner(false)
 };
+
+document.getElementById('btn-search').addEventListener('click', ()=>{
+  const input = document.getElementById('input-search')
+  input.value = ''
+  const searchValue = input.value.trim().toLowerCase()
+  console.log(searchValue);
+  const url = 'https://openapi.programming-hero.com/api/words/all'
+  fetch(url)
+  .then(res => res.json())
+  .then(data =>{
+    const allWord = data.data
+    const filterSearch = allWord.filter(word => word.word.toLowerCase().includes(searchValue))
+    displayLevelWord(filterSearch)
+  })
+})
