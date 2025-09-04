@@ -200,7 +200,6 @@ const displayLevelWord = (words) => {
 document.getElementById("btn-search").addEventListener("click", () => {
   document.querySelectorAll('.lesson-btn').forEach(btn=>btn.classList.remove('active'))
   const input = document.getElementById("input-search");
-  input.value = ''
   const searchValue = input.value.trim().toLowerCase();
   console.log(searchValue);
 
@@ -212,7 +211,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
       const filterWords = allWords.filter((word) =>
         word.word.toLowerCase().includes(searchValue)
       );
-
+      input.value = ''
       displayLevelWord(filterWords);
     });
 });
