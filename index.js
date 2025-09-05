@@ -133,11 +133,13 @@ const displayLevelWord = (words) => {
   manageSpinner(false)
 };
 
-const loadWordDetail = async (id) =>{
-  const url=`https://openapi.programming-hero.com/api/word/${id}`
-  const res = await fetch(url)
-  const details = await res.json()
-  displayWordDetails(details.data);
+const loadWordDetail = (id) => {
+const url =`https://openapi.programming-hero.com/api/word/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(details => {
+      displayWordDetails(details.data);
+    });
 };
 
 
